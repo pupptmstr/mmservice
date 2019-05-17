@@ -10,7 +10,7 @@ import java.io.File
 val settings = File("settings.txt").readLines()
 val KEY = settings[2].split(" : ")[1]
 
-fun main() = runBlocking {
+fun main() {
     val mainServer = Server(KEY)
     mainServer.start()
 }

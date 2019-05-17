@@ -12,6 +12,7 @@ class MatchMaker(channelToRead: Channel<Pair<Int, Int>>, channelToWrite: Channel
 
     init {
         CoroutineScope(Dispatchers.Default).launch {
+            println("запустился матч-мэйкер")
             for (msg in channelToRead) {
                 //msg.second = lvl. Мапа сортируется по ключам, поэтому и берем лвл
                 map.add(msg.second to msg.first)
@@ -22,6 +23,7 @@ class MatchMaker(channelToRead: Channel<Pair<Int, Int>>, channelToWrite: Channel
 
     private suspend fun makeNewPairs(channelToWrite: Channel<Triple<Int, Int, String>>) {
         if (map.size > 1) {
+            println("запустился подбор соперника")
             val list = map.toMutableList()
             for (i in 0 until map.size) {
                 val playerNow = list[i]
@@ -39,6 +41,7 @@ class MatchMaker(channelToRead: Channel<Pair<Int, Int>>, channelToWrite: Channel
     }
 
     private fun generateABattleKey(lvl1: Int, lvl2: Int, id1: Int, id2: Int): String {
+        println("сочиняю ключ")
         return "battle-${lvl1.toByte()}-${lvl2.toByte()} ${id1.toByte()} ${id2.toByte()}"
     }
 }
