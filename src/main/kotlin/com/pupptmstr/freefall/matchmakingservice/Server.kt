@@ -55,6 +55,7 @@ class Server(key: String) {
                 for (msg in channelToRequest) {
                     println("прочитали сообщение из канала 1")
                     println("${msg.first} to ${msg.second}")
+                    println(channelToRequest.isFull)
                     //msg.second = lvl. Мапа сортируется по ключам, поэтому и берем лвл
                     map.add(msg.second to msg.first)
                     println("добавили игрока в сэт")
